@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   Care & Rehab - Healthcare Design System
+   Built by VeriSight Analytics
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Primary - Healthcare Trust Blue */
+  --primary: #1E3A5F;
+  --primary-50: #E8EEF5;
+  --primary-100: #C5D4E8;
+  --primary-200: #9FB8D6;
+  --primary-300: #789CC4;
+  --primary-400: #5280B2;
+  --primary-500: #1E3A5F;
+  --primary-600: #182E4C;
+  --primary-700: #122339;
+  --primary-800: #0C1726;
+  --primary-900: #060C13;
+
+  /* Secondary - Compassion Teal */
+  --teal: #0D9488;
+  --teal-50: #F0FDFA;
+  --teal-100: #CCFBF1;
+  --teal-200: #99F6E4;
+  --teal-300: #5EEAD4;
+  --teal-400: #2DD4BF;
+  --teal-500: #14B8A6;
+  --teal-600: #0D9488;
+  --teal-700: #0F766E;
+  --teal-800: #115E59;
+  --teal-900: #134E4A;
+
+  /* Accent - Warmth (CTAs) */
+  --warmth: #D97706;
+  --warmth-50: #FFFBEB;
+  --warmth-100: #FEF3C7;
+  --warmth-200: #FDE68A;
+  --warmth-300: #FCD34D;
+  --warmth-400: #FBBF24;
+  --warmth-500: #F59E0B;
+  --warmth-600: #D97706;
+  --warmth-700: #B45309;
+  --warmth-800: #92400E;
+  --warmth-900: #78350F;
+
+  /* Semantic */
+  --success: #059669;
+  --error: #DC2626;
+  --warning: #F59E0B;
+
+  /* Neutrals */
+  --background: #FAFAF9;
+  --foreground: #1F2937;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+  --card: #FFFFFF;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-teal: var(--teal);
+  --color-teal-50: var(--teal-50);
+  --color-teal-500: var(--teal-500);
+  --color-teal-600: var(--teal-600);
+  --color-teal-700: var(--teal-700);
+  --color-warmth: var(--warmth);
+  --color-warmth-50: var(--warmth-50);
+  --color-warmth-500: var(--warmth-500);
+  --color-warmth-600: var(--warmth-600);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
