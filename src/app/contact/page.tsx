@@ -1,17 +1,46 @@
+"use client";
+
+import { useState } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { facilities } from "@/data/facilities";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description:
-    "Contact Care & Rehab for skilled nursing, rehabilitation, and memory care services. Find phone numbers, addresses, and hours for all 6 locations.",
-};
+// Note: metadata must be in a separate file for client components
+// For now, we handle SEO via the layout
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const wiFacilities = facilities.filter((f) => f.address.state === "WI");
   const mnFacilities = facilities.filter((f) => f.address.state === "MN");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      // Formspree endpoint - replace YOUR_FORM_ID with actual Formspree form ID
+      const response = await fetch("https://formspree.io/f/YOUR_CONTACT_FORM_ID", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <>
@@ -124,94 +153,121 @@ export default function ContactPage() {
                 hours.
               </p>
 
-              <form className="mt-6 space-y-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {status === "success" ? (
+                <div className="mt-6 rounded-lg bg-green-50 p-6 text-center">
+                  <CheckCircle2 className="mx-auto h-12 w-12 text-green-500" />
+                  <h4 className="mt-4 font-semibold text-green-800">Message Sent!</h4>
+                  <p className="mt-2 text-sm text-green-700">
+                    Thank you for contacting us. We&apos;ll get back to you within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-4 text-sm font-medium text-green-600 hover:underline"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                  {/* Honeypot field for spam prevention */}
+                  <input type="text" name="_gotcha" style={{ display: "none" }} />
+
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor="firstName"
+                        className="block text-sm font-medium text-[var(--foreground)]"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        required
+                        className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="lastName"
+                        className="block text-sm font-medium text-[var(--foreground)]"
+                      >
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        required
+                        className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                      />
+                    </div>
+                  </div>
+
                   <div>
                     <label
-                      htmlFor="firstName"
+                      htmlFor="email"
                       className="block text-sm font-medium text-[var(--foreground)]"
                     >
-                      First Name
+                      Email
                     </label>
                     <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
+                      type="email"
+                      id="email"
+                      name="email"
                       required
                       className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
                     />
                   </div>
+
                   <div>
                     <label
-                      htmlFor="lastName"
+                      htmlFor="phone"
                       className="block text-sm font-medium text-[var(--foreground)]"
                     >
-                      Last Name
+                      Phone
                     </label>
                     <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-[var(--foreground)]"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
                       required
                       className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-[var(--foreground)]"
+                  {status === "error" && (
+                    <div className="flex items-center gap-2 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+                      <AlertCircle className="h-4 w-4" />
+                      Something went wrong. Please try again or call us directly.
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full rounded-full bg-[var(--primary)] px-6 py-3 font-semibold text-white hover:bg-[var(--primary-600)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-[var(--foreground)]"
-                  >
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-[var(--foreground)]"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    required
-                    className="mt-1 block w-full rounded-lg border border-[var(--border)] px-4 py-2 text-[var(--foreground)] focus:border-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-[var(--primary)] px-6 py-3 font-semibold text-white hover:bg-[var(--primary-600)] transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
+                    {status === "submitting" ? "Sending..." : "Send Message"}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

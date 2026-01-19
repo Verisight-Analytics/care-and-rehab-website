@@ -219,15 +219,11 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-[var(--primary-100)]">
-                {/* Placeholder for hero image */}
-                <div className="flex h-full items-center justify-center">
-                  <div className="text-center p-8">
-                    <Users className="mx-auto h-16 w-16 text-[var(--primary-300)]" />
-                    <p className="mt-4 text-[var(--primary-400)] font-medium">
-                      Family-Owned Since 2004
-                    </p>
-                  </div>
-                </div>
+                <img
+                  src="/images/facility-hero.jpg"
+                  alt="Care & Rehab facility - compassionate care environment"
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-6 -left-6 rounded-xl bg-white p-6 shadow-lg">
                 <div className="flex items-center gap-3">
