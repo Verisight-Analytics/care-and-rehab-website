@@ -173,6 +173,34 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Owner Quote */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-[var(--primary-50)] p-8 sm:p-12">
+            <blockquote className="text-center">
+              <p className="text-xl sm:text-2xl font-medium text-[var(--foreground)] leading-relaxed">
+                &quot;We are Committed to Care and we offer a home for all. We
+                treat all people with kindness, dignity, and respect—regardless
+                of their physical or mental condition.&quot;
+              </p>
+              <footer className="mt-8">
+                <img
+                  src="/images/grant-signature.png"
+                  alt="Grant Thayer signature"
+                  className="mx-auto h-12 w-auto"
+                />
+                <p className="mt-4 font-semibold text-[var(--foreground)]">
+                  Grant Thayer
+                </p>
+                <p className="text-sm text-[var(--muted)]">
+                  Owner, Care & Rehab
+                </p>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
       {/* Mission & Values */}
       <section className="bg-[var(--primary-50)] py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

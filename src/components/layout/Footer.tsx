@@ -25,15 +25,13 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[var(--primary)] font-bold text-xl">
-                C&R
-              </div>
-              <div>
-                <p className="font-semibold text-lg">Care & Rehab</p>
-                <p className="text-sm text-white/70">Committed to Care</p>
-              </div>
-            </div>
+            <Link href="/" className="inline-block">
+              <img
+                src="/images/logo-white.png"
+                alt="Care & Rehab - Committed to Care"
+                className="h-14 w-auto"
+              />
+            </Link>
             <p className="mt-4 text-sm text-white/80 leading-relaxed">
               Family-owned skilled nursing and rehabilitation facilities serving
               Wisconsin and Minnesota for over 20 years. We treat all people with
