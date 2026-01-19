@@ -32,18 +32,18 @@
   --teal-800: #115E59;
   --teal-900: #134E4A;
 
-  /* Accent - Warmth (CTAs) */
-  --warmth: #D97706;
-  --warmth-50: #FFFBEB;
-  --warmth-100: #FEF3C7;
-  --warmth-200: #FDE68A;
-  --warmth-300: #FCD34D;
-  --warmth-400: #FBBF24;
-  --warmth-500: #F59E0B;
-  --warmth-600: #D97706;
-  --warmth-700: #B45309;
-  --warmth-800: #92400E;
-  --warmth-900: #78350F;
+  /* Accent - Vibrant Orange (CTAs) - Ignite-inspired energy */
+  --warmth: #f97316;
+  --warmth-50: #fff7ed;
+  --warmth-100: #ffedd5;
+  --warmth-200: #fed7aa;
+  --warmth-300: #fdba74;
+  --warmth-400: #fb923c;
+  --warmth-500: #f97316;
+  --warmth-600: #ea580c;
+  --warmth-700: #c2410c;
+  --warmth-800: #9a3412;
+  --warmth-900: #7c2d12;
 
   /* Semantic */
   --success: #059669;
@@ -82,8 +82,10 @@
   --color-teal-700: var(--teal-700);
   --color-warmth: var(--warmth);
   --color-warmth-50: var(--warmth-50);
+  --color-warmth-100: var(--warmth-100);
   --color-warmth-500: var(--warmth-500);
   --color-warmth-600: var(--warmth-600);
+  --color-warmth-700: var(--warmth-700);
   --color-success: var(--success);
   --color-error: var(--error);
   --color-warning: var(--warning);
@@ -185,4 +187,33 @@ body {
 
 .animate-pulse-gentle {
   animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+/* Section Heading Style - Ignite-inspired */
+.section-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.section-heading-lg {
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  font-weight: 700;
+}
+
+/* Hero title with dramatic letter-spacing */
+.hero-title {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Subtle hover lift for cards */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
