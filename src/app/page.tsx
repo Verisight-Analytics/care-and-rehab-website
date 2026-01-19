@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   Heart,
   Users,
@@ -199,7 +200,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="grid grid-cols-2 gap-4 rounded-2xl bg-white p-8 shadow-2xl sm:grid-cols-4 sm:p-10 ring-1 ring-black/5">
-              {stats.map((stat, index) => (
+              {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
                   <StatCounter value={stat.value} label={stat.label} />
                 </div>
@@ -292,9 +293,11 @@ export default function HomePage() {
             <AnimatedSection direction="right" delay={0.2}>
               <div className="relative">
                 <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-[var(--primary-100)] shadow-2xl">
-                  <img
+                  <Image
                     src="/images/facility-hero.jpg"
                     alt="Care & Rehab facility - compassionate care environment"
+                    width={800}
+                    height={600}
                     className="h-full w-full object-cover"
                   />
                 </div>

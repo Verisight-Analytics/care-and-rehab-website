@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { facilities } from "@/data/facilities";

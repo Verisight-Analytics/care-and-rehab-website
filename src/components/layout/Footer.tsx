@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { facilities } from "@/data/facilities";
 
@@ -26,9 +27,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
-              <img
+              <Image
                 src="/images/logo-white.png"
                 alt="Care & Rehab - Committed to Care"
+                width={147}
+                height={56}
                 className="h-14 w-auto"
               />
             </Link>

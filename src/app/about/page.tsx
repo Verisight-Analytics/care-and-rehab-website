@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Heart,
@@ -184,9 +185,11 @@ export default function AboutPage() {
                 of their physical or mental condition.&quot;
               </p>
               <footer className="mt-8">
-                <img
+                <Image
                   src="/images/grant-signature.png"
                   alt="Grant Thayer signature"
+                  width={200}
+                  height={48}
                   className="mx-auto h-12 w-auto"
                 />
                 <p className="mt-4 font-semibold text-[var(--foreground)]">
