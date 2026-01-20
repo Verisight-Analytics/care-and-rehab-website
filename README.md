@@ -85,4 +85,4 @@ src/
 
 ---
 
-&copy; 2024 Care & Rehab. All rights reserved.
+&copy; 2025 Care & Rehab. All rights reserved.

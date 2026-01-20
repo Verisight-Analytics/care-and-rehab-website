@@ -5,6 +5,7 @@ import {
   Home,
   HandHeart,
   Heart,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 import type { ServiceType } from "./facilities";
@@ -189,6 +190,47 @@ export const services: Service[] = [
       "Private pay",
       "Some Medicaid waiver programs",
       "Veterans benefits (Aid & Attendance)",
+    ],
+  },
+  {
+    slug: "independent-living",
+    name: "Independent Living",
+    shortDescription:
+      "Comfortable apartments with optional support services for active seniors seeking community and independence.",
+    description:
+      "Our independent living apartments provide active seniors with a vibrant community lifestyle while maintaining their independence. Residents enjoy spacious, private apartments with access to optional meal services, housekeeping, and social activities. With no heavy care requirements, independent living is ideal for seniors seeking social engagement, convenience, and the peace of mind that comes from having support services available when needed.",
+    icon: Users,
+    features: [
+      "Private apartments with full kitchens",
+      "Optional meal plans available",
+      "Housekeeping and maintenance services",
+      "Social activities and community events",
+      "Fitness center and wellness programs",
+      "Emergency call systems",
+      "Pet-friendly options",
+      "Transportation services",
+      "On-site beauty salon and barber",
+      "Secure, welcoming community",
+    ],
+    whoIsItFor: [
+      "Active seniors seeking community living",
+      "Those wanting to maintain independence",
+      "Individuals desiring maintenance-free lifestyle",
+      "Couples looking to downsize together",
+      "Anyone seeking social engagement and convenience",
+    ],
+    whatToExpect: [
+      "Tour and consultation with our team",
+      "Flexible lease options",
+      "Active community with varied social calendar",
+      "Access to amenities and services",
+      "Easy transition to higher care levels if needed",
+      "Supportive, friendly neighbors and staff",
+    ],
+    insurance: [
+      "Private pay (monthly rental)",
+      "Long-term care insurance (varies by policy)",
+      "Veterans benefits (Aid & Attendance may apply)",
     ],
   },
   {
