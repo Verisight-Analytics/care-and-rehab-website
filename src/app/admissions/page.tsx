@@ -92,8 +92,8 @@ export default function AdmissionsPage() {
     const formData = new FormData(form);
 
     try {
-      // Formspree endpoint - replace YOUR_FORM_ID with actual Formspree form ID
-      const response = await fetch("https://formspree.io/f/YOUR_TOUR_FORM_ID", {
+      // Formsubmit.co - free form service, no signup required
+      const response = await fetch("https://formsubmit.co/ajax/info@careandrehab.org", {
         method: "POST",
         body: formData,
         headers: {
@@ -247,6 +247,8 @@ export default function AdmissionsPage() {
               <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 {/* Honeypot field for spam prevention */}
                 <input type="text" name="_gotcha" style={{ display: "none" }} />
+                {/* Email subject line */}
+                <input type="hidden" name="_subject" value="New Tour Request - Care & Rehab Website" />
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>

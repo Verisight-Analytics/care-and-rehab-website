@@ -21,8 +21,8 @@ export default function ContactPage() {
     const formData = new FormData(form);
 
     try {
-      // Formspree endpoint - replace YOUR_FORM_ID with actual Formspree form ID
-      const response = await fetch("https://formspree.io/f/YOUR_CONTACT_FORM_ID", {
+      // Formsubmit.co - free form service, no signup required
+      const response = await fetch("https://formsubmit.co/ajax/info@careandrehab.org", {
         method: "POST",
         body: formData,
         headers: {
@@ -170,6 +170,8 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   {/* Honeypot field for spam prevention */}
                   <input type="text" name="_gotcha" style={{ display: "none" }} />
+                  {/* Email subject line */}
+                  <input type="hidden" name="_subject" value="New Contact Form Submission - Care & Rehab Website" />
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
