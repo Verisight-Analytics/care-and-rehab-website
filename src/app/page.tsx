@@ -22,6 +22,7 @@ import { facilities, totalBeds, totalFacilities } from "@/data/facilities";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { StatCounter } from "@/components/ui/AnimatedCounter";
 import { motion } from "framer-motion";
+import { Testimonials } from "@/components/sections/Testimonials";
 
 const services = [
   {
@@ -401,6 +402,9 @@ export default function HomePage() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* CTA Section */}
       <section className="bg-gradient-to-br from-[var(--primary)] via-[var(--primary-600)] to-[var(--primary-700)] py-20 sm:py-28 relative overflow-hidden">

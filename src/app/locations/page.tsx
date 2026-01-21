@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, Phone, Star, ArrowRight, Building2 } from "lucide-react";
 import { facilities, totalBeds, totalFacilities } from "@/data/facilities";
+import { FacilityMap } from "@/components/ui/FacilityMap";
 
 export const metadata: Metadata = {
   title: "Locations",
@@ -47,6 +48,16 @@ export default function LocationsPage() {
               <p className="text-sm text-[var(--muted)]">States Served</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Map */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6">
+            Find a Location Near You
+          </h2>
+          <FacilityMap facilities={facilities} height="450px" />
         </div>
       </section>
 

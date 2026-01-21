@@ -14,6 +14,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { facilities } from "@/data/facilities";
+import { FAQAccordion, type FAQItem } from "@/components/ui/FAQAccordion";
 
 const steps = [
   {
@@ -48,7 +49,7 @@ const steps = [
   },
 ];
 
-const faqs = [
+const faqs: FAQItem[] = [
   {
     question: "What insurance do you accept?",
     answer:
@@ -417,19 +418,7 @@ export default function AdmissionsPage() {
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div
-                key={faq.question}
-                className="rounded-lg bg-white p-6 shadow-sm ring-1 ring-[var(--border)]"
-              >
-                <h3 className="font-semibold text-[var(--foreground)]">
-                  {faq.question}
-                </h3>
-                <p className="mt-2 text-[var(--muted)]">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={faqs} />
 
           <div className="mt-8 text-center">
             <p className="text-[var(--muted)]">

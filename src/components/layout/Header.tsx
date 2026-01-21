@@ -16,6 +16,7 @@ const navigation = [
       { name: "Rehabilitation", href: "/services/rehabilitation" },
       { name: "Memory Care", href: "/services/memory-care" },
       { name: "Assisted Living", href: "/services/assisted-living" },
+      { name: "Independent Living", href: "/services/independent-living" },
       { name: "Respite Care", href: "/services/respite-care" },
       { name: "Hospice Care", href: "/services/hospice" },
     ],
