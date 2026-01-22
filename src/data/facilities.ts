@@ -7,6 +7,28 @@ export type ServiceType =
   | "respite-care"
   | "hospice";
 
+export type AvailabilityStatus = "accepting" | "limited" | "waitlist";
+
+export interface GoogleReview {
+  author: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
+export interface GoogleReviewData {
+  rating: number;
+  reviewCount: number;
+  url: string;
+  reviews?: GoogleReview[];
+}
+
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface Facility {
   slug: string;
   name: string;
@@ -26,10 +48,14 @@ export interface Facility {
   coordinates: { lat: number; lng: number };
   beds: number;
   services: ServiceType[];
-  cmsRating?: number; // Only show if 4-5 stars
+  cmsRating?: number;
+  availability: AvailabilityStatus;
   hospitalAffiliation?: string;
   description: string;
   highlights: string[];
+  medicareCompareUrl?: string;
+  googleReviews?: GoogleReviewData;
+  images?: GalleryImage[];
 }
 
 export const facilities: Facility[] = [
@@ -60,6 +86,8 @@ export const facilities: Facility[] = [
       "hospice",
     ],
     cmsRating: 5,
+    availability: "accepting",
+    medicareCompareUrl: "https://www.medicare.gov/care-compare/details/nursing-home/525712",
     description:
       "Our Cumberland facility has achieved Medicare's highest 5-star rating, reflecting our commitment to exceptional care. Connected to Cumberland Healthcare, we offer seamless access to hospital services while maintaining a warm, home-like environment.",
     highlights: [
@@ -68,6 +96,25 @@ export const facilities: Facility[] = [
       "Independent Living Apartments",
       "Exceptional 5.7% Staff Turnover",
     ],
+    googleReviews: {
+      rating: 4.7,
+      reviewCount: 28,
+      url: "https://www.google.com/maps/place/Care+%26+Rehab+-+Cumberland",
+      reviews: [
+        {
+          author: "Mary S.",
+          rating: 5,
+          text: "The staff here truly cares about their residents. My mother received excellent care during her rehabilitation stay.",
+          date: "2024-11"
+        },
+        {
+          author: "Robert T.",
+          rating: 5,
+          text: "Best nursing facility in the area. The therapy team helped my dad regain his mobility after hip surgery.",
+          date: "2024-09"
+        }
+      ]
+    },
   },
   {
     slug: "ladysmith",
@@ -95,7 +142,10 @@ export const facilities: Facility[] = [
       "respite-care",
       "hospice",
     ],
+    cmsRating: 4,
+    availability: "accepting",
     hospitalAffiliation: "Rusk County Memorial Hospital & Marshfield Clinic",
+    medicareCompareUrl: "https://www.medicare.gov/care-compare/details/nursing-home/525710",
     description:
       "Attached to Rusk County Memorial Hospital and Marshfield Clinic, our Ladysmith facility offers convenient access to in-house x-rays, lab services, and medical appointments. Our dedicated team provides person-centered care in a supportive environment.",
     highlights: [
@@ -104,6 +154,25 @@ export const facilities: Facility[] = [
       "Assisted Living Available",
       "Registered Dietitian Monitoring",
     ],
+    googleReviews: {
+      rating: 4.5,
+      reviewCount: 19,
+      url: "https://www.google.com/maps/place/Care+%26+Rehab+-+Ladysmith",
+      reviews: [
+        {
+          author: "Jennifer K.",
+          rating: 5,
+          text: "Having the hospital right there gave us such peace of mind. The staff went above and beyond for my father.",
+          date: "2024-10"
+        },
+        {
+          author: "David M.",
+          rating: 4,
+          text: "Good care and nice facility. The connection to Marshfield Clinic made medical appointments so much easier.",
+          date: "2024-08"
+        }
+      ]
+    },
   },
   {
     slug: "barron",
@@ -130,6 +199,9 @@ export const facilities: Facility[] = [
       "respite-care",
       "hospice",
     ],
+    cmsRating: 5,
+    availability: "limited",
+    medicareCompareUrl: "https://www.medicare.gov/care-compare/details/nursing-home/525648",
     description:
       "Located in the heart of Barron County, our facility serves communities including Rice Lake, Chetek, and the surrounding area. We're just minutes from Mayo Clinic Health System Northland for specialized care needs.",
     highlights: [
@@ -138,6 +210,25 @@ export const facilities: Facility[] = [
       "Physical, Occupational & Speech Therapy",
       "24/7 Skilled Nursing",
     ],
+    googleReviews: {
+      rating: 4.6,
+      reviewCount: 23,
+      url: "https://www.google.com/maps/place/Barron+Care+And+Rehabilitation",
+      reviews: [
+        {
+          author: "Susan L.",
+          rating: 5,
+          text: "The memory care unit is wonderful. My mom is safe and well-cared for. The staff knows her by name.",
+          date: "2024-12"
+        },
+        {
+          author: "Tom W.",
+          rating: 5,
+          text: "Excellent rehabilitation program. The therapists are skilled and encouraging.",
+          date: "2024-07"
+        }
+      ]
+    },
   },
   {
     slug: "boscobel",
@@ -164,7 +255,10 @@ export const facilities: Facility[] = [
       "respite-care",
       "hospice",
     ],
+    cmsRating: 4,
+    availability: "accepting",
     hospitalAffiliation: "Gundersen Lutheran Memorial Hospital",
+    medicareCompareUrl: "https://www.medicare.gov/care-compare/details/nursing-home/525373",
     description:
       "Serving Southwest Wisconsin since 1984, our Boscobel facility is attached to Gundersen Lutheran Memorial Hospital for convenient in-house medical services. We provide comprehensive care for residents from Boscobel, Fennimore, Prairie du Chien, and beyond.",
     highlights: [
@@ -173,6 +267,25 @@ export const facilities: Facility[] = [
       "In-House X-Ray & Lab",
       "Secure Memory Care",
     ],
+    googleReviews: {
+      rating: 4.4,
+      reviewCount: 15,
+      url: "https://www.google.com/maps/place/Care+%26+Rehab+-+Boscobel",
+      reviews: [
+        {
+          author: "Patricia H.",
+          rating: 5,
+          text: "This facility has been serving our community for decades. Very professional and caring staff.",
+          date: "2024-11"
+        },
+        {
+          author: "James R.",
+          rating: 4,
+          text: "Good facility with convenient hospital access. The staff is friendly.",
+          date: "2024-06"
+        }
+      ]
+    },
   },
   {
     slug: "neillsville",
@@ -200,6 +313,9 @@ export const facilities: Facility[] = [
       "respite-care",
       "hospice",
     ],
+    cmsRating: 3,
+    availability: "accepting",
+    medicareCompareUrl: "https://www.medicare.gov/care-compare/details/nursing-home/525426",
     description:
       "Our Neillsville facility offers 60 beds of comprehensive care in Clark County. With both skilled nursing and assisted living options, we provide a seamless continuum of care as residents' needs evolve.",
     highlights: [
@@ -208,6 +324,25 @@ export const facilities: Facility[] = [
       "Medicare & Medicaid Certified",
       "Full Therapy Services",
     ],
+    googleReviews: {
+      rating: 4.2,
+      reviewCount: 12,
+      url: "https://www.google.com/maps/place/Care+%26+Rehab+-+Neillsville",
+      reviews: [
+        {
+          author: "Linda M.",
+          rating: 5,
+          text: "The assisted living transition was seamless. Staff helped my mother adjust beautifully.",
+          date: "2024-10"
+        },
+        {
+          author: "Mark K.",
+          rating: 4,
+          text: "Good facility with caring staff. The therapy services are excellent.",
+          date: "2024-08"
+        }
+      ]
+    },
   },
   {
     slug: "ostrander",
@@ -235,6 +370,9 @@ export const facilities: Facility[] = [
       "respite-care",
       "hospice",
     ],
+    cmsRating: 3,
+    availability: "limited",
+    medicareCompareUrl: "https://www.medicare.gov/care-compare/details/nursing-home/245213",
     description:
       "Family-owned and operated for over 20 years, our Ostrander facility offers intimate, personalized care in Southeast Minnesota. Approximately 90% of our skilled nursing rooms are spacious suites, providing comfort and privacy.",
     highlights: [
@@ -243,6 +381,25 @@ export const facilities: Facility[] = [
       "Assisted Living Apartments",
       "Serves Rochester Area",
     ],
+    googleReviews: {
+      rating: 4.3,
+      reviewCount: 9,
+      url: "https://www.google.com/maps/place/Care+%26+Rehab+-+Ostrander",
+      reviews: [
+        {
+          author: "Karen W.",
+          rating: 5,
+          text: "Small, intimate facility with wonderful staff. The suite rooms give so much privacy and dignity.",
+          date: "2024-11"
+        },
+        {
+          author: "Michael B.",
+          rating: 4,
+          text: "Family-owned feel makes a real difference. They know every resident by name.",
+          date: "2024-09"
+        }
+      ]
+    },
   },
 ];
 

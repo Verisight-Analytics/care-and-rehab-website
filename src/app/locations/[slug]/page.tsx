@@ -18,6 +18,10 @@ import {
   Heart,
 } from "lucide-react";
 import { facilities, getFacilityBySlug, type ServiceType } from "@/data/facilities";
+import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
+import { CMSRatingBadge } from "@/components/ui/CMSRatingBadge";
+import { GoogleReviews } from "@/components/ui/GoogleReviews";
+import { PhotoGallery, PhotoGalleryPlaceholder } from "@/components/ui/PhotoGallery";
 
 export async function generateStaticParams() {
   return facilities.map((facility) => ({
@@ -86,16 +90,17 @@ export default async function FacilityPage({
                 <span>/</span>
                 <span>{facility.address.state}</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
                   {facility.name}
                 </h1>
-                {facility.cmsRating === 5 && (
+                {facility.cmsRating && facility.cmsRating >= 4 && (
                   <div className="flex items-center gap-1 rounded-full bg-[var(--warmth)] px-3 py-1 text-sm font-medium text-white">
                     <Star className="h-4 w-4" fill="currentColor" />
-                    5-Star Rated
+                    {facility.cmsRating}-Star Rated
                   </div>
                 )}
+                <AvailabilityBadge status={facility.availability} size="md" />
               </div>
               <p className="mt-2 text-white/80">
                 {facility.address.city}, {facility.address.state} &bull;{" "}
@@ -214,6 +219,32 @@ export default async function FacilityPage({
                   </div>
                 </div>
               </div>
+
+              {/* Photo Gallery */}
+              <div>
+                <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6">
+                  Facility Photos
+                </h2>
+                {facility.images && facility.images.length > 0 ? (
+                  <PhotoGallery images={facility.images} />
+                ) : (
+                  <PhotoGalleryPlaceholder facilityName={facility.shortName} />
+                )}
+              </div>
+
+              {/* Quality Ratings & Reviews */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {facility.cmsRating && (
+                  <CMSRatingBadge
+                    rating={facility.cmsRating}
+                    medicareUrl={facility.medicareCompareUrl}
+                    variant="card"
+                  />
+                )}
+                {facility.googleReviews && (
+                  <GoogleReviews data={facility.googleReviews} />
+                )}
+              </div>
             </div>
 
             {/* Right Column - Contact Card */}
@@ -319,9 +350,15 @@ export default async function FacilityPage({
                     <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--primary)]">
                       {otherFacility.shortName}, {otherFacility.address.state}
                     </h3>
-                    {otherFacility.cmsRating === 5 && (
-                      <Star className="h-4 w-4 text-[var(--warmth)]" fill="currentColor" />
-                    )}
+                    <div className="flex items-center gap-2">
+                      {otherFacility.cmsRating && otherFacility.cmsRating >= 4 && (
+                        <div className="flex items-center gap-1 text-xs text-[var(--warmth)]">
+                          <Star className="h-3.5 w-3.5" fill="currentColor" />
+                          {otherFacility.cmsRating}
+                        </div>
+                      )}
+                      <AvailabilityBadge status={otherFacility.availability} size="sm" showIcon={false} />
+                    </div>
                   </div>
                   <p className="mt-1 text-sm text-[var(--muted)]">
                     {otherFacility.beds} beds

@@ -23,6 +23,8 @@ import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/
 import { StatCounter } from "@/components/ui/AnimatedCounter";
 import { motion } from "framer-motion";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
+import { CMSStars } from "@/components/ui/CMSRatingBadge";
 
 const services = [
   {
@@ -357,16 +359,16 @@ export default function HomePage() {
                       <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--warmth)] transition-colors">
                         {facility.shortName}, {facility.address.state}
                       </h3>
-                      <p className="mt-1 text-sm text-[var(--muted)]">
-                        {facility.beds} beds
-                      </p>
-                    </div>
-                    {facility.cmsRating === 5 && (
-                      <div className="flex items-center gap-1 rounded-full bg-[var(--warmth-50)] px-2.5 py-1 text-xs font-medium text-[var(--warmth-600)]">
-                        <Star className="h-3 w-3" fill="currentColor" />
-                        5-Star
+                      <div className="mt-1 flex items-center gap-3">
+                        <span className="text-sm text-[var(--muted)]">
+                          {facility.beds} beds
+                        </span>
+                        {facility.cmsRating && (
+                          <CMSStars rating={facility.cmsRating} />
+                        )}
                       </div>
-                    )}
+                    </div>
+                    <AvailabilityBadge status={facility.availability} size="sm" showIcon={false} />
                   </div>
                   <div className="mt-4 flex items-center gap-2 text-sm text-[var(--muted)]">
                     <MapPin className="h-4 w-4" />

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, Calendar } from "lucide-react";
+import { Phone, Calendar, MessageCircle } from "lucide-react";
 
 export function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,9 +14,11 @@ export function StickyCTA() {
       const heroHeight = 400;
 
       if (currentScrollY > heroHeight) {
-        if (currentScrollY > lastScrollY) {
+        // Show when scrolling UP (user looking for help) or staying still
+        if (currentScrollY < lastScrollY || currentScrollY === lastScrollY) {
           setIsVisible(true);
         } else {
+          // Hide when actively scrolling down (reading content)
           setIsVisible(false);
         }
       } else {
@@ -42,14 +44,21 @@ export function StickyCTA() {
           className="flex-1 flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-4 py-3 font-semibold text-white text-sm"
         >
           <Phone className="h-4 w-4" />
-          Call Now
+          Call
+        </a>
+        <a
+          href="sms:+17159375524?body=Hi%2C%20I%27m%20interested%20in%20learning%20about%20Care%20%26%20Rehab"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-[var(--teal)] px-4 py-3 font-semibold text-white text-sm"
+        >
+          <MessageCircle className="h-4 w-4" />
+          Text
         </a>
         <Link
           href="/admissions"
           className="flex-1 flex items-center justify-center gap-2 rounded-full bg-[var(--warmth)] px-4 py-3 font-semibold text-white text-sm"
         >
           <Calendar className="h-4 w-4" />
-          Schedule Tour
+          Tour
         </Link>
       </div>
       <div className="h-[env(safe-area-inset-bottom)]" />
